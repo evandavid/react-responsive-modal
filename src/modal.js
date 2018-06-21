@@ -24,7 +24,7 @@ class Modal extends Component {
       showPortal: props.open,
     };
     this.shouldClose = null;
-    this.scrollWidth = 0;
+    this.scrollWidth = 15;
   }
 
   componentDidMount() {
@@ -142,8 +142,7 @@ class Modal extends Component {
   blockScroll() {
     var header = document.getElementById('header');
     noScroll.on();
-    console.log(header, this.scrollWidth);
-    if (header) header.style.left = '-' + this.scrollWidth + 'px';
+    if (header) header.setAttribute('style', 'left: -' + this.scrollWidth + 'px !important');
   }
 
   unblockScroll = () => {
@@ -153,7 +152,7 @@ class Modal extends Component {
     if (openedModals.length === 1) {
       var header = document.getElementById('header');
       noScroll.off();
-      if (header) header.style.left = '0px';
+      if (header) header.setAttribute('style', 'left: 0px !important');
     }
   };
 
