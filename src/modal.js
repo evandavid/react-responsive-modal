@@ -127,6 +127,7 @@ class Modal extends Component {
   // eslint-disable-next-line class-methods-use-this
   blockScroll() {
     var header = document.getElementById('header');
+    console.log(this.scrollWidth, header);
     noScroll.on();
     if (header) header.style.left = '-' + this.scrollWidth + 'px';
   }
