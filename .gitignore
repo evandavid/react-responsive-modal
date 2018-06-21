@@ -10,7 +10,7 @@ node_modules
 .npm
 
 # Build
-lib
+#lib
 
 # Webstorm
 .idea
