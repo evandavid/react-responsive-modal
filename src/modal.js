@@ -49,8 +49,6 @@ class Modal extends Component {
 
     // remove divs
     outer.parentNode.removeChild(outer);
-
-    return widthNoScroll - widthWithScroll;
     this.scrollWidth = widthNoScroll - widthWithScroll;
     
     if (this.props.open) {
@@ -144,6 +142,7 @@ class Modal extends Component {
   blockScroll() {
     var header = document.getElementById('header');
     noScroll.on();
+    console.log(header, this.scrollWidth);
     if (header) header.style.left = '-' + this.scrollWidth + 'px';
   }
 
