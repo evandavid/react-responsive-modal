@@ -24,10 +24,19 @@ class Modal extends Component {
       showPortal: props.open,
     };
     this.shouldClose = null;
+    this.scrollWidth = 0;
   }
 
   componentDidMount() {
     // Block scroll when initial prop is open
+    var scrollDiv = document.createElement("div");
+    scrollDiv.className = "scrollbar-measure";
+    document.body.appendChild(scrollDiv);
+
+    // Get the scrollbar width
+    this.scrollWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+    document.body.removeChild(scrollDiv);
+    
     if (this.props.open) {
       this.handleOpen();
     }
@@ -117,7 +126,9 @@ class Modal extends Component {
 
   // eslint-disable-next-line class-methods-use-this
   blockScroll() {
+    var header = document.getElementById('header');
     noScroll.on();
+    if (header) header.style.left = '-' + this.scrollWidth + 'px';
   }
 
   unblockScroll = () => {
@@ -125,7 +136,9 @@ class Modal extends Component {
       this.props.classes.modal
     );
     if (openedModals.length === 1) {
+      var header = document.getElementById('header');
       noScroll.off();
+      if (header) header.style.left = '0px';
     }
   };
 
