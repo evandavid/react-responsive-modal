@@ -65,6 +65,7 @@ class Modal extends Component {
   }
 
   componentWillUnmount() {
+    noScroll.off();
     if (this.props.open) {
       this.handleClose();
     }
