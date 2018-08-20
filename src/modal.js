@@ -142,8 +142,10 @@ class Modal extends Component {
   // eslint-disable-next-line class-methods-use-this
   blockScroll() {
     var header = document.getElementById('header');
+    var shadowTable = document.getElementById('shadowTable');
     noScroll.on();
     if (header) header.setAttribute('style', 'left: -' + this.scrollWidth + 'px !important');
+    if (shadowTable) shadowTable.setAttribute('style', 'left: calc( 50% -' + this.scrollWidth + 'px) !important');
   }
 
   unblockScroll = () => {
@@ -152,8 +154,10 @@ class Modal extends Component {
     );
     if (openedModals.length === 1) {
       var header = document.getElementById('header');
+      var shadowTable = document.getElementById('shadowTable');
       noScroll.off();
       if (header) header.setAttribute('style', 'left: 0px !important');
+      if (shadowTable) shadowTable.setAttribute('style', 'left: 50% !important');
     }
   };
 
