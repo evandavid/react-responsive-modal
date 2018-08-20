@@ -157,7 +157,7 @@ class Modal extends Component {
       var shadowTable = document.getElementById('shadowTable');
       noScroll.off();
       if (header) header.setAttribute('style', 'left: 0px !important');
-      if (shadowTable) shadowTable.setAttribute('style', 'left: 50% !important;' + shadowTable.getAttribute('style'));
+      if (shadowTable) shadowTable.setAttribute('style', 'left: 50% !important;');
     }
   };
 
