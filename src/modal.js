@@ -50,7 +50,7 @@ class Modal extends Component {
     // remove divs
     outer.parentNode.removeChild(outer);
     this.scrollWidth = widthNoScroll - widthWithScroll - 8;
-    
+
     if (this.props.open) {
       this.handleOpen();
     }
@@ -145,7 +145,7 @@ class Modal extends Component {
     var shadowTable = document.getElementById('shadowTable');
     noScroll.on();
     if (header) header.setAttribute('style', 'left: -' + this.scrollWidth + 'px !important');
-    if (shadowTable) shadowTable.setAttribute('style', 'left: calc( 50% -' + this.scrollWidth + 'px) !important');
+    if (shadowTable) shadowTable.setAttribute('style', 'left: calc(50% - ' + this.scrollWidth + 'px) !important;' + shadowTable.getAttribute('style'));
   }
 
   unblockScroll = () => {
@@ -157,7 +157,7 @@ class Modal extends Component {
       var shadowTable = document.getElementById('shadowTable');
       noScroll.off();
       if (header) header.setAttribute('style', 'left: 0px !important');
-      if (shadowTable) shadowTable.setAttribute('style', 'left: 50% !important');
+      if (shadowTable) shadowTable.setAttribute('style', 'left: 50% !important;' + shadowTable.getAttribute('style'));
     }
   };
 
