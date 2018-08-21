@@ -145,7 +145,13 @@ class Modal extends Component {
     var shadowTable = document.getElementById('shadowTable');
     noScroll.on();
     if (header) header.setAttribute('style', 'left: -' + this.scrollWidth + 'px !important');
-    if (shadowTable) shadowTable.style.left = 'calc(50% ' + (this.scrollWidth * -1) + 'px)';
+    if (shadowTable) {
+        if ((this.scrollWidth * -1) < 0) {
+          shadowTable.style.left = 'calc(50% - ' + this.scrollWidth + 'px)';
+        } else {
+          shadowTable.style.left = 'calc(50% - ' + (this.scrollWidth * -1) + 'px)';
+        }
+    }
   }
 
   unblockScroll = () => {
