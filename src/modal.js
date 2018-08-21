@@ -49,7 +49,12 @@ class Modal extends Component {
 
     // remove divs
     outer.parentNode.removeChild(outer);
-    this.scrollWidth = widthNoScroll - widthWithScroll - 8;
+    var hasScrollbar = window.innerWidth > document.documentElement.clientWidth;
+
+    if (hasScrollbar)
+      this.scrollWidth = widthNoScroll - widthWithScroll - 8;
+    else
+      this.scrollWidth = 0;
 
     if (this.props.open) {
       this.handleOpen();
