@@ -44,7 +44,6 @@ class Modal extends Component {
 
     getScrollbarSize() {
         if (typeof scrollbarSize !== 'undefined') return scrollbarSize;
-
         var doc = document.documentElement;
         var dummyScroller = document.createElement('div');
         dummyScroller.setAttribute('style', 'width:99px;height:99px;' + 'position:absolute;top:-9999px;overflow:scroll;');
@@ -145,9 +144,8 @@ class Modal extends Component {
     var hasScrollbar = window.innerWidth > document.documentElement.clientWidth;
     if (hasScrollbar) this.scrollWidth = this.getScrollbarSize();
     else this.scrollWidth = 0;
-      console.log(hasScrollbar, this.scrollWidth)
     noScroll.on();
-    if (header) header.setAttribute('style', 'left: -' + this.scrollWidth + 'px !important');
+      if (header) header.setAttribute('style', 'left: -' + (this.scrollWidth ? this.scrollWidth - 8 : 0) + 'px !important');
     if (shadowTable) {
         if ((this.scrollWidth * -1) < 0) {
           shadowTable.style.left = 'calc(50% - ' + this.scrollWidth + 'px)';
@@ -173,7 +171,6 @@ class Modal extends Component {
       var hasScrollbar = window.innerWidth > document.documentElement.clientWidth;
       if (hasScrollbar) this.scrollWidth = this.getScrollbarSize();
       else this.scrollWidth = 0;
-        console.log(hasScrollbar, this.scrollWidth)
 
       noScroll.off();
       if (header) header.setAttribute('style', 'left: 0px !important');
