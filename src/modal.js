@@ -8,6 +8,8 @@ import noScroll from 'no-scroll';
 import CloseIcon from './close-icon';
 import cssClasses from './styles.css';
 
+let scrollbarSize;
+
 class Modal extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (!prevState.showPortal && nextProps.open) {
