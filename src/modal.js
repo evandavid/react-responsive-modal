@@ -28,31 +28,10 @@ class Modal extends Component {
   }
 
   componentDidMount() {
-    // Block scroll when initial prop is open
-    var outer = document.createElement("div");
-    outer.style.visibility = "hidden";
-    outer.style.width = "100px";
-    outer.style.msOverflowStyle = "scrollbar"; // needed for WinJS apps
-
-    document.body.appendChild(outer);
-
-    var widthNoScroll = outer.offsetWidth;
-    // force scrollbars
-    outer.style.overflow = "scroll";
-
-    // add innerdiv
-    var inner = document.createElement("div");
-    inner.style.width = "100%";
-    outer.appendChild(inner);
-
-    var widthWithScroll = inner.offsetWidth;
-
-    // remove divs
-    outer.parentNode.removeChild(outer);
     var hasScrollbar = window.innerWidth > document.documentElement.clientWidth;
 
     if (hasScrollbar)
-      this.scrollWidth = widthNoScroll - widthWithScroll - 8;
+      this.scrollWidth = this.getScrollbarSize();
     else
       this.scrollWidth = 0;
 
@@ -60,6 +39,18 @@ class Modal extends Component {
       this.handleOpen();
     }
   }
+
+    getScrollbarSize() {
+        if (typeof scrollbarSize !== 'undefined') return scrollbarSize;
+
+        var doc = document.documentElement;
+        var dummyScroller = document.createElement('div');
+        dummyScroller.setAttribute('style', 'width:99px;height:99px;' + 'position:absolute;top:-9999px;overflow:scroll;');
+        doc.appendChild(dummyScroller);
+        scrollbarSize = dummyScroller.offsetWidth - dummyScroller.clientWidth;
+        doc.removeChild(dummyScroller);
+        return scrollbarSize;
+    }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.showPortal && !this.state.showPortal) {
@@ -173,7 +164,7 @@ class Modal extends Component {
       var header = document.getElementById('header');
       var shadowTable = document.getElementById('shadowTable');
       var affected = document.querySelectorAll('[data-affectedbymodal="true"]');
-    
+      noScroll.off();
       if (header) header.setAttribute('style', 'left: 0px !important');
       if (shadowTable) shadowTable.style.left = '50%';
       if (affected && affected.length) {
@@ -181,7 +172,6 @@ class Modal extends Component {
           affected[i].setAttribute('style', 'left: 0px !important');
         }
       }
-      noScroll.off();
     }
   };
 
