@@ -62,6 +62,8 @@ class Modal extends Component {
   }
 
   componentWillUnmount() {
+      let app = document.getElementById('app');
+      if (app) app.style.filter = 'none';
     noScroll.off();
     if (this.props.open) {
       this.handleClose();
