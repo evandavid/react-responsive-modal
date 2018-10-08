@@ -173,7 +173,7 @@ class Modal extends Component {
       var header = document.getElementById('header');
       var shadowTable = document.getElementById('shadowTable');
       var affected = document.querySelectorAll('[data-affectedbymodal="true"]');
-      noScroll.off();
+    
       if (header) header.setAttribute('style', 'left: 0px !important');
       if (shadowTable) shadowTable.style.left = '50%';
       if (affected && affected.length) {
@@ -181,6 +181,7 @@ class Modal extends Component {
           affected[i].setAttribute('style', 'left: 0px !important');
         }
       }
+      noScroll.off();
     }
   };
 
