@@ -140,6 +140,10 @@ class Modal extends Component {
     var header = document.getElementById('header');
     var shadowTable = document.getElementById('shadowTable');
     var affected = document.querySelectorAll('[data-affectedbymodal="true"]');
+    var hasScrollbar = window.innerWidth > document.documentElement.clientWidth;
+    if (hasScrollbar) this.scrollWidth = this.getScrollbarSize();
+    else this.scrollWidth = 0;
+      console.log(hasScrollbar, this.scrollWidth)
     noScroll.on();
     if (header) header.setAttribute('style', 'left: -' + this.scrollWidth + 'px !important');
     if (shadowTable) {
@@ -164,6 +168,11 @@ class Modal extends Component {
       var header = document.getElementById('header');
       var shadowTable = document.getElementById('shadowTable');
       var affected = document.querySelectorAll('[data-affectedbymodal="true"]');
+      var hasScrollbar = window.innerWidth > document.documentElement.clientWidth;
+      if (hasScrollbar) this.scrollWidth = this.getScrollbarSize();
+      else this.scrollWidth = 0;
+        console.log(hasScrollbar, this.scrollWidth)
+
       noScroll.off();
       if (header) header.setAttribute('style', 'left: 0px !important');
       if (shadowTable) shadowTable.style.left = '50%';
