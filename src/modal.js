@@ -139,7 +139,7 @@ class Modal extends Component {
   // eslint-disable-next-line class-methods-use-this
   blockScroll() {
       let app = document.getElementById('app');
-      if (app) app.style.filter = 'blur(2px)';
+      if (app) app.style.filter = 'blur(4px)';
     var header = document.getElementById('header');
     var shadowTable = document.getElementById('shadowTable');
     var affected = document.querySelectorAll('[data-affectedbymodal="true"]');
@@ -166,8 +166,8 @@ class Modal extends Component {
     const openedModals = document.getElementsByClassName(
       this.props.classes.modal
     );
-      let app = document.getElementById('app');
-      if (app) document.documentElement.style.filter = 'none';
+    let app = document.getElementById('app');
+      if (app) app.style.filter = 'none';
     if (openedModals.length === 1) {
       var header = document.getElementById('header');
       var shadowTable = document.getElementById('shadowTable');
