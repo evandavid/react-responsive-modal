@@ -148,6 +148,7 @@ class Modal extends Component {
   blockScroll() {
     var header = document.getElementById('header');
     var shadowTable = document.getElementById('shadowTable');
+    var affected = document.querySelectorAll('[data-affectedbymodal="true"]');
     noScroll.on();
     if (header) header.setAttribute('style', 'left: -' + this.scrollWidth + 'px !important');
     if (shadowTable) {
@@ -155,6 +156,11 @@ class Modal extends Component {
           shadowTable.style.left = 'calc(50% - ' + this.scrollWidth + 'px)';
         } else {
           shadowTable.style.left = 'calc(50% - ' + (this.scrollWidth * -1) + 'px)';
+        }
+    }
+    if (affected && affected.length) {
+        for (var i = 0; i < affected.length; i++) {
+            affected[i].setAttribute('style', 'left: -' + this.scrollWidth + 'px !important');
         }
     }
   }
@@ -166,9 +172,15 @@ class Modal extends Component {
     if (openedModals.length === 1) {
       var header = document.getElementById('header');
       var shadowTable = document.getElementById('shadowTable');
+      var affected = document.querySelectorAll('[data-affectedbymodal="true"]');
       noScroll.off();
       if (header) header.setAttribute('style', 'left: 0px !important');
       if (shadowTable) shadowTable.style.left = '50%';
+      if (affected && affected.length) {
+        for (var i = 0; i < affected.length; i++) {
+          affected[i].setAttribute('style', 'left: 0px !important');
+        }
+      }
     }
   };
 
