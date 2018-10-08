@@ -166,8 +166,7 @@ class Modal extends Component {
     const openedModals = document.getElementsByClassName(
       this.props.classes.modal
     );
-    let app = document.getElementById('app');
-      if (app) app.style.filter = 'none';
+    
     if (openedModals.length === 1) {
       var header = document.getElementById('header');
       var shadowTable = document.getElementById('shadowTable');
@@ -224,6 +223,10 @@ class Modal extends Component {
           timeout={animationDuration}
           onEntered={this.handleEntered}
           onExited={this.handleExited}
+          onExiting={() => {
+              let app = document.getElementById('app');
+              if (app) app.style.filter = 'none';
+          }}
         >
           <div
             className={cx(
