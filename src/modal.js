@@ -145,7 +145,7 @@ class Modal extends Component {
     if (hasScrollbar) this.scrollWidth = this.getScrollbarSize();
     else this.scrollWidth = 0;
     noScroll.on();
-      if (header) header.setAttribute('style', 'left: -' + (this.scrollWidth ? this.scrollWidth - 8 : 0) + 'px !important');
+      if (header) header.setAttribute('style', 'left: -' + (this.scrollWidth ? this.scrollWidth - 7 : 0) + 'px !important');
     if (shadowTable) {
         if ((this.scrollWidth * -1) < 0) {
           shadowTable.style.left = 'calc(50% - ' + this.scrollWidth + 'px)';
